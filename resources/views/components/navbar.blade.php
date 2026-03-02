@@ -1,7 +1,8 @@
-<div>
-    <nav class="bg-[#F3F4F6] text-black x-data="{ mobileOpen: false }">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div class="relative flex h-16 items-center justify-between">
+    <nav class="bg-[#F3F4F6] text-black shadow-md rounded-[20px] sticky top-4 z-50"
+        x-data="{ mobileOpen: false }">
+
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div class="relative flex h-16 items-center justify-between">
 
             <!-- Mobile Button -->
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -32,10 +33,10 @@
                 <!-- Desktop Menu -->
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
-                        <a href="/" class="rounded-md bg-[#F3F4F6] px-3 py-2 text-sm font-medium text-black">Home</a>
-                        <a href="about" class="rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-white/5 hover:text-white">About</a>
-                        <a href="blog" class="rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-white/5 hover:text-white">Blog</a>
-                        <a href="contact" class="rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-white/5 hover:text-white">Contact</a>
+                        <a href="/" class="rounded-md bg-[#F3F4F6] px-3 py-2 text-sm font-medium text-black hover:bg-black/5 hover:text-black">Home</a>
+                        <a href="about" class="rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-black/5 hover:text-black">About</a>
+                        <a href="blog" class="rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-black/5 hover:text-black">Blog</a>
+                        <a href="contact" class="rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-black/5 hover:text-black">Contact</a>
                     </div>
                 </div>
             </div>
@@ -77,4 +78,3 @@
     </div>
 
 </nav>
-</div>

@@ -137,7 +137,7 @@
 </div>
 
 <!-- SECTION: HARI INI DI SEKOLAH -->
-<div class="bg-white py-16">
+<div class="bg-white py-16 ">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-2 gap-8">
             

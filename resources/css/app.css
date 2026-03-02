@@ -1,16 +1,14 @@
 @import 'tailwindcss';
+@import "tailwindcss";
+@import "@fontsource/inter/variable.css";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
-@import "@fontsource-variable/inter";
-@import "tailwindcss";
-
 
 @theme {
-  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-sans: "InterVariable", ui-sans-serif, system-ui, sans-serif;
 }
 
 

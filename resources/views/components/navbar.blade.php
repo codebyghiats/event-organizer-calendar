@@ -46,9 +46,6 @@
                 <button
                     @click="profileOpen = !profileOpen"
                     class="flex rounded-full focus:outline-none">
-                    <img class="size-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
-                        alt="User">
                 </button>
 
                 <!-- Dropdown -->

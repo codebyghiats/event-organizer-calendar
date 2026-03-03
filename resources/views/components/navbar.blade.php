@@ -45,8 +45,8 @@
             <div class="relative ml-3" x-data="{ profileOpen: false }">
                 <button
                     @click="profileOpen = !profileOpen"
-                    class="flex rounded-full focus:outline-none">
-                    <img class="size-8 rounded-full"
+                    class="flex rounded-full focus:outline-none ring-2 ring-transparent hover:ring-primary-light transition">
+                    <img class="size-8 rounded-full border-2 border-border"
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
                         alt="User">
                 </button>

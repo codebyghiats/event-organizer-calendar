@@ -7,6 +7,7 @@
         "dev": "vite"
     },
     "devDependencies": {
+        "@rollup/rollup-win32-x64-msvc": "^4.59.0",
         "@tailwindcss/vite": "^4.2.1",
         "autoprefixer": "^10.4.27",
         "axios": "^1.11.0",

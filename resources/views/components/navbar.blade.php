@@ -1,11 +1,11 @@
-<nav class="bg-white text-text-primary border-b border-border shadow-sm rounded-[20px] sticky top-4 z-50"
+<nav class="bg-white text-text-primary border-b border-border shadow-sm"
     x-data="{ mobileOpen: false }">
 
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div class="relative flex h-16 items-center justify-between">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-5">
+        <div class="relative flex h-15 items-center justify-between">
 
             <!-- Mobile Button -->
-            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <div class="absolute inset-y-0 right-0 flex items-center sm:hidden">
                 <button
                     @click="mobileOpen = !mobileOpen"
                     class="inline-flex items-center justify-center rounded-md p-2 text-text-secondary hover:bg-background hover:text-primary transition">
@@ -25,10 +25,14 @@
             </div>
 
             <!-- Logo -->
-            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div class="flex shrink-0 items-center">
-                    <span class="text-text-primary font-bold text-lg">School Planner</span>
-                </div>
+            <div class="flex shrink-0 items-center">
+                <img src="{{ asset('images/schoolplanner.png') }}" 
+                alt="School Planner Logo" 
+                class="h-15 w-auto mr-2">
+                <span class="text-text-primary font-bold text-lg">
+                School Planner
+                </span>
+            </div>
 
                 <!-- Desktop Menu -->
                 <div class="hidden sm:ml-6 sm:block">
@@ -42,13 +46,7 @@
             </div>
 
             <!-- Profile Dropdown -->
-            <div class="relative ml-3" x-data="{ profileOpen: false }">
-                <button
-                    @click="profileOpen = !profileOpen"
-                    class="flex rounded-full focus:outline-none ring-2 ring-transparent hover:ring-primary-light transition">
-                    <img class="size-8 rounded-full border-2 border-border"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
-                        alt="User">
+            {{--  --}}
                 </button>
 
                 <!-- Dropdown -->

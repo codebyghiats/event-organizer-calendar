@@ -39,7 +39,7 @@
                 
                 <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
                     <!-- Primary Button -->
-                    <a href="#"
+                    <a href="{{ route('calendarUser') }}"
                         class="px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-primary text-white font-semibold shadow-lg hover:bg-primary-dark transition transform hover:-translate-y-0.5 text-center">
                         Lihat Kalender
                     </a>
@@ -241,7 +241,7 @@
 
                     {{-- Kalender --}}
                     <li>
-                        <a href="#" class="flex items-center gap-3 group">
+                        <a href="{{ route('calendarUser') }}" class="flex items-center gap-3 group">
     
                             <!-- Box Border -->
                             <div class="w-8 h-8 flex items-center justify-center 

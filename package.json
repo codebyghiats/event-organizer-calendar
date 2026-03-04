@@ -7,7 +7,7 @@
         "dev": "vite"
     },
     "devDependencies": {
-        "@tailwindcss/vite": "^4.0.0",
+        "@tailwindcss/vite": "^4.2.1",
         "autoprefixer": "^10.4.27",
         "axios": "^1.11.0",
         "concurrently": "^9.0.1",
@@ -24,7 +24,7 @@
         "test": "tests"
     },
     "dependencies": {
-        "@fontsource/inter": "^5.2.8",
+        "@fontsource-variable/inter": "^5.2.8",
         "ansi-regex": "^5.0.1",
         "ansi-styles": "^4.3.0",
         "asynckit": "^0.4.0",

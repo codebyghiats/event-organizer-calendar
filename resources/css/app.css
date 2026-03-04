@@ -1,6 +1,5 @@
 @import 'tailwindcss';
-@import "tailwindcss";
-@import "@fontsource/inter/variable.css";
+@import "@fontsource-variable/inter";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -8,7 +7,35 @@
 @source '../**/*.js';
 
 @theme {
-  --font-sans: "InterVariable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  
+  /* Custom Colors */
+  --color-primary: #3461DF;
+  --color-primary-dark: #274BC8;
+  --color-primary-medium: #79ACFF;
+  --color-primary-light: #B8D9FF;
+  --color-background: #F4F8FF;
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #64748B;
+  --color-border: #E2E8F0;
 }
 
+/* Global Styles */
+body {
+  @apply font-sans text-text-primary antialiased;
+}
 
+/* Gradient untuk Login/Register */
+.gradient-login {
+  background: linear-gradient(135deg, #B8D9FF 0%, #79ACFF 50%, #3461DF 100%);
+}
+
+/* Soft shadow untuk card */
+.shadow-soft {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Focus state untuk input */
+.input-focus {
+  @apply border-primary-medium focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition;
+}

@@ -38,7 +38,7 @@
                 
                 <div class="mt-8 flex gap-4">
                     <!-- Primary Button -->
-                    <a href="#"
+                    <a href="{{ route('calendarUser') }}"
                        class="px-8 py-3.5 rounded-xl bg-primary text-white font-semibold shadow-lg hover:bg-primary-dark transition transform hover:-translate-y-0.5">
                         Lihat Kalender
                     </a>

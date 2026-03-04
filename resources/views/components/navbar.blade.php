@@ -1,83 +1,118 @@
-<nav class="bg-white text-text-primary border-b border-border shadow-sm"
-    x-data="{ mobileOpen: false }">
+<nav 
+    x-data="{ mobileOpen: false }"
+    class="fixed top-6 left-1/2 -translate-x-1/2 
+    w-[97%] max-w-[1200px]
+    bg-white/25 backdrop-blur-xl
+    border border-white/30
+    shadow-lg shadow-blue-200/10
+    rounded-2xl
+    z-50">
 
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-5">
-        <div class="relative flex h-15 items-center justify-between">
+    <div class="px-8">
+        <div class="flex items-center justify-between h-16">
+
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <img src="{{ asset('images/schoolplanner.png') }}" 
+                    alt="School Planner Logo" 
+                    class="h-9 w-auto">
+                <span class="font-semibold text-lg text-gray-800 tracking-tight">
+                    School Planner
+                </span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+
+                <a href="/" 
+                class="px-4 py-2 text-sm font-medium text-blue-600
+                bg-white/40 backdrop-blur-md
+                rounded-xl border border-white/40 shadow-sm">
+                Home
+                </a>
+
+                <a href="about" 
+                class="text-sm font-medium text-gray-700
+                transition duration-300 hover:text-blue-600">
+                About
+                </a>
+
+                <a href="blog" 
+                class="text-sm font-medium text-gray-700
+                transition duration-300 hover:text-blue-600">
+                Blog
+                </a>
+
+                <a href="contact" 
+                class="text-sm font-medium text-gray-700
+                transition duration-300 hover:text-blue-600">
+                Contact
+                </a>
+
+            </div>
 
             <!-- Mobile Button -->
-            <div class="absolute inset-y-0 right-0 flex items-center sm:hidden">
+            <div class="md:hidden">
                 <button
                     @click="mobileOpen = !mobileOpen"
-                    class="inline-flex items-center justify-center rounded-md p-2 text-text-secondary hover:bg-background hover:text-primary transition">
+                    class="p-2 rounded-xl bg-white/40 backdrop-blur-md border border-white/30">
 
-                    <!-- Hamburger -->
-                    <svg x-show="!mobileOpen" class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg x-show="!mobileOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
                     </svg>
 
-                    <!-- Close -->
-                    <svg x-show="mobileOpen" class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg x-show="mobileOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                             d="M6 18L18 6M6 6l12 12"/>
                     </svg>
+
                 </button>
-            </div>
-
-            <!-- Logo -->
-            <div class="flex shrink-0 items-center">
-                <img src="{{ asset('images/schoolplanner.png') }}" 
-                alt="School Planner Logo" 
-                class="h-15 w-auto mr-2">
-                <span class="text-text-primary font-bold text-lg">
-                School Planner
-                </span>
-            </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden sm:ml-6 sm:block">
-                    <div class="flex space-x-1">
-                        <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-primary bg-background">Home</a>
-                        <a href="about" class="rounded-md px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-background transition">About</a>
-                        <a href="blog" class="rounded-md px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-background transition">Blog</a>
-                        <a href="contact" class="rounded-md px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-background transition">Contact</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Profile Dropdown -->
-            {{--  --}}
-                </button>
-
-                <!-- Dropdown -->
-                <div
-                    x-show="profileOpen"
-                    @click.outside="profileOpen = false"
-                    x-transition:enter="transition ease-out duration-100"
-                    x-transition:enter-start="transform opacity-0 scale-95"
-                    x-transition:enter-end="transform opacity-100 scale-100"
-                    x-transition:leave="transition ease-in duration-75"
-                    x-transition:leave-start="transform opacity-100 scale-100"
-                    x-transition:leave-end="transform opacity-0 scale-95"
-                    class="absolute right-0 mt-2 w-48 rounded-xl bg-white py-1 shadow-lg border border-border">
-
-                    <a href="#" class="block px-4 py-2 text-sm text-text-secondary hover:text-primary hover:bg-background transition">Your Profile</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-text-secondary hover:text-primary hover:bg-background transition">Settings</a>
-                    <hr class="my-1 border-border">
-                    <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition">Sign out</a>
-                </div>
             </div>
 
         </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div x-show="mobileOpen" x-transition class="sm:hidden">
-        <div class="space-y-1 px-2 pt-2 pb-3">
-            <a href="/" class="block rounded-md bg-primary px-3 py-2 text-sm font-medium text-white">Home</a>
-            <a href="about" class="block rounded-md px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-background transition">About</a>
-            <a href="blog" class="block rounded-md px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-background transition">Blog</a>
-            <a href="contact" class="block rounded-md px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-background transition">Contact</a>
+    <!-- Mobile Dropdown -->
+    <div x-show="mobileOpen"
+        x-transition
+        class="md:hidden px-6 pb-6">
+
+        <div class="mt-4 space-y-3">
+
+            <a href="/" 
+            class="block px-4 py-2 rounded-xl text-sm font-medium 
+            bg-white/40 backdrop-blur-md border border-white/30">
+            Home
+            </a>
+
+            <a href="about" 
+            class="block px-4 py-2 rounded-xl text-sm font-medium 
+            text-gray-700
+            hover:bg-white/30 hover:backdrop-blur-md
+            border border-transparent hover:border-white/30
+            transition">
+            About
+            </a>
+
+            <a href="blog" 
+            class="block px-4 py-2 rounded-xl text-sm font-medium 
+            text-gray-700
+            hover:bg-white/30 hover:backdrop-blur-md
+            border border-transparent hover:border-white/30
+            transition">
+            Blog
+            </a>
+
+            <a href="contact" 
+            class="block px-4 py-2 rounded-xl text-sm font-medium 
+            text-gray-700
+            hover:bg-white/30 hover:backdrop-blur-md
+            border border-transparent hover:border-white/30
+            transition">
+            Contact
+            </a>
+
         </div>
     </div>
 

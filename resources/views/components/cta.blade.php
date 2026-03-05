@@ -25,7 +25,7 @@
                 Buka Kalender
             </a>
 
-            <a href="#"
+            <a href="{{ route('about') }}"
             class="px-10 py-4 rounded-2xl border border-white/30 
             hover:bg-white/10 transition-all duration-300
             font-semibold">

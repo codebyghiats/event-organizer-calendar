@@ -31,7 +31,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('calendarUser') }}" class="hover:text-white transition flex items-center gap-2">
+                        <a href="{{ route('kalender.public') }}" class="hover:text-white transition flex items-center gap-2">
                             <!-- Calendar Icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" 
                                 class="w-4 h-4" fill="none" viewBox="0 0 24 24" 

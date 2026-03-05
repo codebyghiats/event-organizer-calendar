@@ -34,13 +34,7 @@
                 <a href="about" 
                 class="text-sm font-medium text-gray-700
                 transition duration-300 hover:text-blue-600">
-                About
-                </a>
-
-                <a href="blog" 
-                class="text-sm font-medium text-gray-700
-                transition duration-300 hover:text-blue-600">
-                Blog
+                About Us
                 </a>
 
                 <a href="contact" 
@@ -117,3 +111,15 @@
     </div>
 
 </nav>
+@auth
+    <a href="{{ route('dashboard') }}" class="bg-primary text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-primary-dark transition">
+        Dashboard
+    </a>
+@else
+    <a href="{{ route('login') }}" class="text-text-secondary hover:text-text-primary font-semibold">
+        Login
+    </a>
+    <a href="{{ route('register') }}" class="bg-primary text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-primary-dark transition">
+        Register
+    </a>
+@endauth

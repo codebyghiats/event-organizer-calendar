@@ -150,3 +150,24 @@ body {
 .aos-animate {
   transform: translateY(0) scale(1);
 }
+
+/* Event Pending = Abu-abu */
+.event-pending .fc-event-main {
+    @apply bg-gray-400 border-gray-500 opacity-80;
+}
+
+.event-pending .fc-event-title::after {
+    content: " • Pending";
+    font-size: 0.75em;
+    opacity: 0.9;
+}
+
+/* Event Approved = Warna sesuai kategori */
+.event-approved .fc-event-main {
+    @apply bg-blue-500 border-blue-600;
+}
+
+/* Hover effect untuk approved */
+.event-approved:hover .fc-event-main {
+    @apply bg-blue-600;
+}

@@ -11,7 +11,8 @@
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-    <link rel="icon" type="image/png" href="{{ asset('images/schoolplanner.png') }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('images/schoolplanner.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/schoolplanner.png') }}">
 </head>
 
 <body class="font-sans antialiased text-gray-800 bg-white overflow-x-hidden">

@@ -7,16 +7,16 @@
 
             <!-- BRAND -->
             <div>
-                <h2 class="text-2xl font-bold text-white">School Planner</h2>
+                <h2 class="text-2xl font-bold text-white border-b-2 p-1">School Planner</h2>
                 <p class="mt-4 text-slate-400 text-sm leading-relaxed">
-                    Platform manajemen agenda sekolah untuk mengatur jadwal
+                    <span class="text-white font-semibold ">Platform manajemen agenda sekolah</span> untuk mengatur jadwal
                     OSIS, MPK, Ekstrakurikuler, dan Event Sekolah secara rapi dan profesional.
                 </p>
             </div>
 
             <!-- NAVIGATION -->
             <div>
-                <h3 class="text-white font-semibold mb-4">Navigasi</h3>
+                <h3 class="text-white font-semibold mb-4 border-b-2 p-1">Navigasi</h3>
                 <ul class="space-y-3 text-sm">
                     <li>
                         <a href="/" class="hover:text-white transition flex items-center gap-2">
@@ -47,7 +47,7 @@
 
             <!-- DEVELOPERS -->
             <div>
-                <h3 class="text-white font-semibold mb-4">Tim Developer</h3>
+                <h3 class="text-white font-semibold mb-4 border-b-2 p-1">Tim Developer</h3>
                 <ul class="space-y-3 text-sm">
 
                     <!-- Developer 1 -->
@@ -145,7 +145,7 @@
 
         <!-- BOTTOM -->
         <div class="border-t border-slate-700 mt-12 pt-6 text-center text-sm text-slate-500">
-           TR1VIUM © {{ date('Y') }} School Planner. All rights reserved.
+           <span class="text-white font-semibold">TR1VIUM</span> © {{ date('Y') }} School Planner | All rights reserved.
         </div>
     </div>
 </footer>

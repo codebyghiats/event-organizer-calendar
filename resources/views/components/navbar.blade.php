@@ -29,7 +29,7 @@ School Planner
 <a href="{{ route('home') }}"
 class="px-4 py-2 text-sm font-medium rounded-xl transition
 {{ request()->routeIs('home') 
-? 'text-gray-800 bg-white/40 backdrop-blur-md border border-white/40 shadow-sm'
+? 'text-primary bg-white/40 backdrop-blur-md border border-white/40 shadow-sm'
 : 'text-gray-700 hover:text-blue-600' }}">
 Home
 </a>
@@ -37,7 +37,7 @@ Home
 <a href="{{ route('about') }}"
 class="px-4 py-2 text-sm font-medium rounded-xl transition
 {{ request()->routeIs('about') 
-? 'text-gray-800 bg-white/40 backdrop-blur-md border border-white/40 shadow-sm'
+? 'text-primary bg-white/40 backdrop-blur-md border border-white/40 shadow-sm'
 : 'text-gray-700 hover:text-blue-600' }}">
 About us
 </a>
@@ -45,7 +45,7 @@ About us
 <a href="{{ route('contact') }}"
 class="px-4 py-2 text-sm font-medium rounded-xl transition
 {{ request()->routeIs('contact') 
-? 'text-gray-800 bg-white/40 backdrop-blur-md border border-white/40 shadow-sm'
+? 'text-primary bg-white/40 backdrop-blur-md border border-white/40 shadow-sm'
 : 'text-gray-700 hover:text-blue-600' }}">
 Contact
 </a>

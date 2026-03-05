@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -78,4 +79,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Family::class, 'created_by');
     }
+
+    
 }

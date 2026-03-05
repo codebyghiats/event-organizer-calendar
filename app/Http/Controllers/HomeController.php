@@ -20,4 +20,9 @@ class HomeController extends Controller
     {
         return view('contact');
     }
+
+    public function index()
+    {
+        return view('dashboard'); // resources/views/dashboard.blade.php
+    }
 }

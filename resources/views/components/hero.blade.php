@@ -23,17 +23,19 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fadeUp animate-delay-3">
-                    <a href="{{ route('calendarUser') }}"
-                       class="px-8 py-4 rounded-2xl bg-blue-600 text-white font-semibold
-                       shadow-lg shadow-blue-300/40 hover:shadow-blue-400/60
-                       hover:-translate-y-1 transition-all duration-300 text-center">
+                    <!-- Tombol Lihat Kalender → ke public calendar -->
+                    <a href="{{ route('kalender.public') }}"
+                    class="px-8 py-4 rounded-2xl bg-blue-600 text-white font-semibold
+                    shadow-lg shadow-blue-300/40 hover:shadow-blue-400/60
+                    hover:-translate-y-1 transition-all duration-300 text-center">
                         Lihat Kalender
                     </a>
 
-                    <a href="#"
-                       class="px-8 py-4 rounded-2xl border border-gray-300
-                       text-gray-700 font-semibold hover:bg-gray-100
-                       transition-all duration-300 text-center">
+                    <!-- Tombol Masuk Akun → ke login -->
+                    <a href="{{ route('login') }}"
+                    class="px-8 py-4 rounded-2xl border border-gray-300
+                    text-gray-700 font-semibold hover:bg-gray-100
+                    transition-all duration-300 text-center">
                         Masuk Akun
                     </a>
                 </div>

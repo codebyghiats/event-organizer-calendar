@@ -16,7 +16,7 @@ class CalendarController extends Controller
     }
     public function calendarUser()
     {
-        return view('C-Folder.calendarUser');
+        return view('C-Folder.calendar');
     }
     public function calendarOrganisasi()
     {

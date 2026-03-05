@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ asset('images/schoolplanner.png') }}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
@@ -521,8 +522,8 @@
                 isTodayDate(date) {
                     const today = new Date();
                     return date.getDate() === today.getDate() &&
-                           date.getMonth() === today.getMonth() &&
-                           date.getFullYear() === today.getFullYear();
+                        date.getMonth() === today.getMonth() &&
+                        date.getFullYear() === today.getFullYear();
                 },
 
                 formatHour(hour) {

@@ -39,3 +39,114 @@ body {
 .input-focus {
   @apply border-primary-medium focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition;
 }
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 1s ease forwards;
+}
+
+.animate-delay-1 { animation-delay: 0.2s; opacity: 0; }
+.animate-delay-2 { animation-delay: 0.4s; opacity: 0; }
+.animate-delay-3 { animation-delay: 0.6s; opacity: 0; }
+.animate-delay-4 { animation-delay: 0.8s; opacity: 0; }
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ================= ANIMATED GRADIENT BG ================= */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-bg {
+  background: linear-gradient(-45deg, #dbeafe, #ffffff, #e0f2fe, #eef2ff);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+/* ================= SHIMMER TEXT ================= */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #2563eb 0%,
+    #60a5fa 25%,
+    #ffffff 50%,
+    #60a5fa 75%,
+    #2563eb 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+/* ================= FLOAT IMAGE ================= */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ================= SCROLL INDICATOR ================= */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scroll-dot {
+  width: 6px;
+  height: 6px;
+  background: #2563eb;
+  border-radius: 50%;
+  animation: scrollBounce 1.5s infinite;
+}
+
+@keyframes scrollBounce {
+  0%,100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: .5; }
+}
+
+/* ================= NAVBAR SCROLL EFFECT ================= */
+.nav-scrolled {
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+/* =============== Smooth reveal effect ================== */
+[data-aos] {
+  transition-property: transform, opacity !important;
+}
+
+/* Card subtle scale effect saat muncul */
+.aos-animate {
+  transform: translateY(0) scale(1);
+}

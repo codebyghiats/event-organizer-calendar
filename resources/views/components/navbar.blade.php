@@ -116,3 +116,15 @@ Contact
 </div>
 
 </nav>
+@auth
+    <a href="{{ route('dashboard') }}" class="bg-primary text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-primary-dark transition">
+        Dashboard
+    </a>
+@else
+    <a href="{{ route('login') }}" class="text-text-secondary hover:text-text-primary font-semibold">
+        Login
+    </a>
+    <a href="{{ route('register') }}" class="bg-primary text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-primary-dark transition">
+        Register
+    </a>
+@endauth

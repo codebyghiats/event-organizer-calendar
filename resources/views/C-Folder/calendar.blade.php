@@ -28,7 +28,31 @@
         }
     </style>
 </head>
+
+
 <body class="bg-gray-50 text-gray-800 h-screen overflow-hidden flex" x-data="calendarApp()">
+
+<!-- Tambahkan di atas <body> atau dalam <main> -->
+<nav class="bg-white border-b border-gray-200 px-6 py-3">
+    <div class="flex justify-between items-center">
+        <a href="{{ route('home') }}" class="text-blue-600 hover:underline">← Kembali ke Home</a>
+        
+        @guest
+            <div>
+                <a href="{{ route('login') }}" class="text-gray-600 mr-4">Login</a>
+                <a href="{{ route('register') }}" class="bg-blue-600 text-white px-4 py-2 rounded">Register</a>
+            </div>
+        @else
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-600">{{ Auth::user()->name }}</span>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="text-sm text-red-500 hover:underline">Logout</button>
+                </form>
+            </div>
+        @endguest
+    </div>
+</nav>
 
     <!-- Sidebar dengan Scroll -->
     <aside class="w-72 bg-white border-r border-gray-200 flex flex-col h-full shrink-0">

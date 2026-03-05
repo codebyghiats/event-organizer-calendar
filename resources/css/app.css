@@ -151,33 +151,3 @@ body {
 .aos-animate {
   transform: translateY(0) scale(1);
 }
-
-/* ================= ABOUT PAGE ================= */
-
-.about-hero-bg {
-    background: linear-gradient(180deg, #eff6ff 0%, #ffffff 50%, #eff6ff 100%);
-}
-
-.about-card {
-    @apply bg-white rounded-3xl p-8 shadow-sm border border-gray-100 
-    hover:shadow-xl hover:-translate-y-2 transition-all duration-500;
-}
-
-.team-card {
-    @apply bg-white rounded-3xl p-6 shadow-sm border border-gray-100
-    hover:shadow-xl hover:-translate-y-2 transition-all duration-500
-    text-center;
-}
-
-.tech-card {
-    @apply bg-white rounded-2xl p-6 flex items-center justify-center
-    shadow-sm border border-gray-100 hover:shadow-lg transition;
-}
-
-.dashboard-card{
-@apply bg-white p-8 rounded-3xl shadow hover:shadow-xl transition duration-300 block hover:-translate-y-1;
-}
-
-.stats-card{
-@apply bg-gray-50 p-10 rounded-3xl text-center shadow-sm;
-}

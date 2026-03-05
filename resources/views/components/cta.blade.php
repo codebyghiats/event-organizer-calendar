@@ -18,7 +18,7 @@
 
         <div class="mt-10 flex flex-col sm:flex-row gap-5 justify-center">
 
-            <a href="{{ route('calendarUser') }}"
+            <a href="{{ route('kalender.public') }}"
             class="px-10 py-4 rounded-2xl bg-blue-600 
             hover:bg-blue-500 transition-all duration-300
             font-semibold shadow-xl hover:-translate-y-1">

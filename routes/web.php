@@ -12,18 +12,15 @@ use App\Http\Controllers\AuthController;
 | Public Pages (Tanpa Auth)
 |--------------------------------------------------------------------------
 */
-
-// Landing page & About
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'home')->name('home');
     Route::get('/about', 'about')->name('about');
 });
 
-// Contact
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
-// ✅ Public Calendar Preview (Bisa diakses tanpa login)
+// Public calendar preview
 Route::get('/kalender', [CalendarController::class, 'calendarUser'])->name('kalender.public');
 
 /*
@@ -34,7 +31,6 @@ Route::get('/kalender', [CalendarController::class, 'calendarUser'])->name('kale
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.store');
-    
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 });
@@ -45,20 +41,14 @@ Route::middleware('guest')->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::middleware('auth')->group(function () {
-    
-    // Dashboard
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
-    
-    // Logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     
-    // 🗓️ Calendar (User & Organisasi) - Butuh Login
     Route::prefix('calendar')->controller(CalendarController::class)->group(function () {
         Route::get('/', 'calendarUser')->name('calendarUser');
         Route::get('/organisasi', 'calendarOrganisasi')->name('calendarOrganisasi');
     });
     
-    // Family Management
     Route::controller(FamilyMemberController::class)->group(function () {
         Route::post('/families/{family}/approve-all', 'approveAll')->name('families.approveAll');
     });

@@ -66,3 +66,24 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/calendar', 'index')->name('calendarAdmin');
 });
+
+// Settings & Profile Routes (Butuh Login)
+Route::middleware('auth')->group(function () {
+    
+    // Settings page
+    Route::get('/settings', function () {
+        return view('settings');
+    })->name('settings');
+    
+    // Profile update
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    
+    // Password update
+    Route::put('/password', [ProfileController::class, 'updatePassword'])->name('password.update');
+    
+    // Delete account
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    // Logout
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});

@@ -38,9 +38,9 @@
     <aside class="fixed left-0 top-0 h-full w-64 bg-white border-r border-slate-200 z-50 hidden lg:block">
         <div class="p-6">
             <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white">
-                    <i data-lucide="calendar-check" class="w-6 h-6"></i>
-                </div>
+                <img src="{{ asset('images/schoolplanner.png') }}" 
+                alt="School Planner Logo" 
+                class="w-10 h-10 object-contain">
                 <span class="font-bold text-xl text-slate-900">School Planner</span>
             </div>
 
@@ -55,14 +55,14 @@
                 </a>
                 <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl font-medium transition-colors">
                     <i data-lucide="users" class="w-5 h-5"></i>
-                    Organisasi
+                    Family
                 </a>
                 <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl font-medium transition-colors">
                     <i data-lucide="bell" class="w-5 h-5"></i>
                     Notifikasi
                     <span class="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">3</span>
                 </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl font-medium transition-colors">
+                <a href="settings" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl font-medium transition-colors">
                     <i data-lucide="settings" class="w-5 h-5"></i>
                     Pengaturan
                 </a>
@@ -70,16 +70,20 @@
         </div>
 
         <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-slate-200">
-            <div class="flex items-center gap-3">
-                <img src="https://i.pravatar.cc/150?img=11" alt="User" class="w-10 h-10 rounded-full border-2 border-blue-100">
-                <div class="flex-1">
-                    <p class="font-semibold text-sm text-slate-900">Ahmad Rizky</p>
-                    <p class="text-xs text-slate-500">Admin OSIS</p>
-                </div>
-                <button class="text-slate-400 hover:text-slate-600">
-                    <i data-lucide="log-out" class="w-5 h-5"></i>
-                </button>
-            </div>
+           <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+            <span class="text-blue-600 font-bold">
+                {{ substr(auth()->user()->name, 0, 1) }}
+            </span>
+        </div>
+        <div class="flex-1">
+            <p class="font-semibold text-sm text-gray-800">
+                {{ auth()->user()->name }}
+            </p>
+            <p class="text-xs text-gray-500">Member</p>
+        </div>
+    </div>
+        </div>
         </div>
     </aside>
 
@@ -125,7 +129,9 @@
                 
                 <div class="relative z-10">
                     <p class="text-blue-100 font-medium mb-2">Selamat Datang Kembali! 👋</p>
-                    <h1 class="text-3xl lg:text-4xl font-bold mb-4">Ahmad Rizky</h1>
+                    <h1 class="text-3xl font-bold text-white">
+                        {{ auth()->user()->name }}
+                    </h1>
                     <p class="text-blue-100 max-w-xl mb-6">Kamu memiliki 3 event minggu ini dan 2 tugas yang perlu dikonfirmasi. Jadwal OSIS hari ini pukul 15:00 WIB.</p>
                     
                     <div class="flex flex-wrap gap-3">

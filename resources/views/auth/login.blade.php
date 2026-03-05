@@ -82,7 +82,7 @@
                         <a href="#" class="text-primary hover:text-primary-dark font-medium transition">Lupa password?</a>
                     </div>
 
-                    <button type="submit" class="btn-primary w-full py-4 px-6 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <button type="submit" class="btn-primary w-full py-4 px-6 text-black font-semibold rounded-xl shadow-lg hover:shadow-xl transition duration-300">
                         Masuk
                     </button>
                 </form>

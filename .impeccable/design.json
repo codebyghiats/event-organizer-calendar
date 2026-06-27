@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-16T06:15:00+07:00",
+  "title": "Design System: School Planner",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Academic Royal Blue",
+        "canonical": "oklch(53% 0.22 260)",
+        "tonalRamp": ["#F4F8FF", "#E5EEFF", "#B8D9FF", "#79ACFF", "#3461DF", "#274BC8", "#1E3A8A", "#0F172A"]
+      },
+      "primary-dark": {
+        "role": "primary-dark",
+        "displayName": "Deep Slate Blue",
+        "canonical": "oklch(45% 0.21 262)",
+        "tonalRamp": ["#F4F8FF", "#E5EEFF", "#B8D9FF", "#79ACFF", "#3461DF", "#274BC8", "#1E3A8A", "#0F172A"]
+      },
+      "primary-medium": {
+        "role": "primary-medium",
+        "displayName": "Focus Light Blue",
+        "canonical": "oklch(74% 0.15 255)",
+        "tonalRamp": ["#F4F8FF", "#E5EEFF", "#B8D9FF", "#79ACFF", "#3461DF", "#274BC8", "#1E3A8A", "#0F172A"]
+      },
+      "primary-light": {
+        "role": "primary-light",
+        "displayName": "Soft Accent Blue",
+        "canonical": "oklch(88% 0.08 250)",
+        "tonalRamp": ["#F4F8FF", "#E5EEFF", "#B8D9FF", "#79ACFF", "#3461DF", "#274BC8", "#1E3A8A", "#0F172A"]
+      },
+      "neutral-bg": {
+        "role": "neutral",
+        "displayName": "Off-White Tint",
+        "canonical": "oklch(97% 0.01 250)",
+        "tonalRamp": ["#FFFFFF", "#F8FAFC", "#F1F5F9", "#E2E8F0", "#CBD5E1", "#94A3B8", "#475569", "#0F172A"]
+      },
+      "text-primary": {
+        "role": "neutral",
+        "displayName": "Ink Primary",
+        "canonical": "oklch(19% 0.03 240)",
+        "tonalRamp": ["#FFFFFF", "#F8FAFC", "#F1F5F9", "#E2E8F0", "#CBD5E1", "#94A3B8", "#475569", "#0F172A"]
+      },
+      "text-secondary": {
+        "role": "neutral",
+        "displayName": "Ink Secondary",
+        "canonical": "oklch(54% 0.04 240)",
+        "tonalRamp": ["#FFFFFF", "#F8FAFC", "#F1F5F9", "#E2E8F0", "#CBD5E1", "#94A3B8", "#475569", "#0F172A"]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Border Light",
+        "canonical": "oklch(93% 0.01 240)",
+        "tonalRamp": ["#FFFFFF", "#F8FAFC", "#F1F5F9", "#E2E8F0", "#CBD5E1", "#94A3B8", "#475569", "#0F172A"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display Heading",
+        "purpose": "Primary page title and hero headers."
+      },
+      "body": {
+        "displayName": "Body Text",
+        "purpose": "General readable text, cards description, and forms labels."
+      }
+    },
+    "shadows": [
+      {
+        "name": "Floating Nav Shadow",
+        "value": "0 25px 50px -12px rgba(15, 23, 42, 0.05)",
+        "purpose": "Applied to sticky navigation and overlay dialogs to float them."
+      },
+      {
+        "name": "Interactive Soft Shadow",
+        "value": "0 4px 6px -1px rgba(15, 23, 42, 0.05)",
+        "purpose": "Applied to clickable items and cards on hover."
+      }
+    ],
+    "motion": [
+      {
+        "name": "fadeUp",
+        "value": "fadeUp 1s ease forwards",
+        "purpose": "Entrance animation for key sections."
+      },
+      {
+        "name": "float",
+        "value": "float 6s ease-in-out infinite",
+        "purpose": "Hover/presence micro-movement."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Used for primary interactive actions like approval, submission, or key links.",
+      "html": "<button class=\"ds-btn-primary\">Approve Proposal</button>",
+      "css": ".ds-btn-primary { background-color: #3461DF; color: #FFFFFF; border: none; border-radius: 16px; padding: 10px 24px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: background-color 0.2s ease, transform 0.1s ease; } .ds-btn-primary:hover { background-color: #274BC8; } .ds-btn-primary:active { transform: scale(0.95); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Used for secondary/cancellation actions.",
+      "html": "<button class=\"ds-btn-secondary\">Decline</button>",
+      "css": ".ds-btn-secondary { background-color: #0F172A; color: #FFFFFF; border: none; border-radius: 16px; padding: 10px 24px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: background-color 0.2s ease, transform 0.1s ease; } .ds-btn-secondary:hover { background-color: #1E293B; } .ds-btn-secondary:active { transform: scale(0.95); }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Standard form inputs.",
+      "html": "<input type=\"text\" class=\"ds-input-field\" placeholder=\"Enter reason for rejection...\">",
+      "css": ".ds-input-field { background-color: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 16px; padding: 14px 20px; font-family: 'Inter', sans-serif; font-size: 14px; color: #0F172A; width: 100%; box-sizing: border-box; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; } .ds-input-field::placeholder { color: #9CA3AF; } .ds-input-field:focus { border-color: #79ACFF; box-shadow: 0 0 0 4px rgba(52, 97, 223, 0.1); }"
+    },
+    {
+      "name": "Card Container",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Standard grid container for proposals, stats, and lists.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Event Proposal</h3><p class=\"ds-card-text\">Proposed event: Annual Sports Meet by OSIS. Needs advisor approval.</p><div class=\"ds-card-actions\"><button class=\"ds-btn-primary\">Approve</button><button class=\"ds-btn-secondary\">Decline</button></div></div>",
+      "css": ".ds-card { background-color: #FFFFFF; border: 1px solid #F3F4F6; border-radius: 24px; padding: 32px; font-family: 'Inter', sans-serif; transition: box-shadow 0.5s ease, transform 0.5s ease; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); } .ds-card:hover { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); transform: translateY(-8px); } .ds-card-title { font-size: 18px; font-weight: 700; color: #0F172A; margin: 0 0 8px 0; } .ds-card-text { font-size: 14px; color: #64748B; margin: 0 0 24px 0; line-height: 1.5; } .ds-card-actions { display: flex; gap: 8px; } .ds-btn-primary { background-color: #3461DF; color: #FFFFFF; border: none; border-radius: 16px; padding: 10px 24px; font-weight: 700; cursor: pointer; transition: background-color 0.2s ease, transform 0.1s ease; } .ds-btn-primary:hover { background-color: #274BC8; } .ds-btn-primary:active { transform: scale(0.95); } .ds-btn-secondary { background-color: #0F172A; color: #FFFFFF; border: none; border-radius: 16px; padding: 10px 24px; font-weight: 700; cursor: pointer; transition: background-color 0.2s ease, transform 0.1s ease; } .ds-btn-secondary:hover { background-color: #1E293B; } .ds-btn-secondary:active { transform: scale(0.95); }"
+    },
+    {
+      "name": "Floating Navigation Bar",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Main responsive application floating header.",
+      "html": "<nav class=\"ds-navbar\"><div class=\"ds-navbar-logo\">School Planner</div><div class=\"ds-navbar-links\"><a href=\"#\" class=\"ds-nav-link ds-nav-active\">Home</a><a href=\"#\" class=\"ds-nav-link\">About us</a><a href=\"#\" class=\"ds-nav-link\">Contact</a><button class=\"ds-nav-btn\">Login</button></div></nav>",
+      "css": ".ds-navbar { display: flex; align-items: center; justify-content: space-between; background-color: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 32px; padding: 16px 32px; width: 100%; box-sizing: border-box; font-family: 'Inter', sans-serif; box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.05); } .ds-navbar-logo { font-weight: 900; font-size: 20px; color: #0F172A; } .ds-navbar-links { display: flex; align-items: center; gap: 8px; } .ds-nav-link { text-decoration: none; padding: 10px 20px; font-size: 14px; font-weight: 700; border-radius: 16px; color: #64748B; transition: color 0.2s ease, background-color 0.2s ease; } .ds-nav-link:hover { color: #3461DF; background-color: #F9FAFB; } .ds-nav-active { color: #3461DF; background-color: rgba(52, 97, 223, 0.05); border: 1px solid rgba(52, 97, 223, 0.1); } .ds-nav-btn { background-color: #0F172A; color: #FFFFFF; border: none; border-radius: 16px; padding: 10px 24px; font-weight: 700; cursor: pointer; transition: background-color 0.2s ease; } .ds-nav-btn:hover { background-color: #1F2937; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Academic Beacon",
+    "overview": "The Academic Beacon design system emphasizes structured clarity, clean lines, and trust-inspiring grids. Designed to coordinate and track events and proposals, it prioritizes clear layout structures and functional color systems over decorative hype.",
+    "keyCharacteristics": [
+      "Crisp borders and grid-based event calendar layouts.",
+      "Clear structural layout density for rapid review tasks.",
+      "High contrast typography optimized for administrative reading."
+    ],
+    "rules": [
+      {
+        "name": "The Rarity Rule",
+        "body": "The primary accent (#3461DF) is used on <=10% of any given screen. Its rarity directs the user's attention to primary call-to-actions and pending approvals.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Cream Rule",
+        "body": "Never use warm-sand, cream, or beige tones (hue 40-100 in OKLCH) for backgrounds or cards. The theme must remain anchored in neutral off-whites and cool blue tints.",
+        "section": "colors"
+      },
+      {
+        "name": "The Balance Rule",
+        "body": "Headings (h1–h3) must always employ text-wrap: balance to prevent awkward line breaks and orphaned words.",
+        "section": "typography"
+      },
+      {
+        "name": "The Border-First Rule",
+        "body": "Depth and section division must be established with clean borders (#E2E8F0 at 1px) rather than overlapping shadows.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do maintain strict text contrast ratios of >=4.5:1 for body copy against light backgrounds.",
+      "Do align all dashboard panels and calendars to a strict, border-based grid layout.",
+      "Do limit card heights and layout configurations to standard uniform grids."
+    ],
+    "donts": [
+      "Don't use warm-cream/beige 'SaaS boilerplate' templates or background colors.",
+      "Don't add complex modern 'hype' visual effects like glowing borders, neon accents, or glassmorphic panel blurs.",
+      "Don't employ side-stripe borders (e.g. border-left thicker than 1px) on status panels or callout alerts.",
+      "Don't use gradient text effects. Titles must remain solid colors for professional clarity.",
+      "Don't place tiny uppercase tracked eyebrows above every single section; limit their use to form input headers.",
+      "Don't use arbitrary numbers (like 01 / 02 / 03) to label landing page sections unless it is an explicit multi-step tutorial.",
+      "Don't animate image assets on hover states. Animation is reserved for background shifts or border transitions."
+    ]
+  }
+}

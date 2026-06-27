@@ -2,27 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class FamilyMember extends Model
 {
-    protected $fillable = [
-        'user_id',
-        'family_id',
-        'organization_id',
-        'role',
-        'status',
-        'joined_at',
-        'approved_at',
-        'approved_by',
-        'notes',
-    ];
+    use HasFactory;
 
-    /*
-    |--------------------------------------------------------------------------
-    | RELATIONSHIPS
-    |--------------------------------------------------------------------------
-    */
+    protected $fillable = [
+        'family_id',
+        'user_id',
+        'role',
+    ];
 
     public function user()
     {
@@ -32,15 +23,5 @@ class FamilyMember extends Model
     public function family()
     {
         return $this->belongsTo(Family::class);
-    }
-
-    public function organization()
-    {
-        return $this->belongsTo(Organization::class);
-    }
-
-    public function approver()
-    {
-        return $this->belongsTo(User::class, 'approved_by');
     }
 }

@@ -223,6 +223,18 @@
                                 }"
                                 x-text="day.date"></span>
                         </div>
+
+                        <!-- List Event di Sel ini -->
+                        <div class="space-y-1">
+                            <template x-for="event in getEventsForDate(day.fullDate)" :key="event.id">
+                                <div 
+                                    :style="`background-color: ${event.color || '#3b82f6'}`"
+                                    class="px-2 py-1 rounded-md text-[10px] text-white font-bold truncate shadow-sm"
+                                    :title="event.title"
+                                    x-text="event.title">
+                                </div>
+                            </template>
+                        </div>
                     </div>
                 </template>
             </div>
@@ -325,9 +337,10 @@
         function calendarApp() {
             return {
                 currentView: 'minggu',
-                currentDate: new Date(2026, 8, 9),
-                miniMonth: 8,
-                miniYear: 2025,
+                currentDate: new Date(),
+                allEvents: @json($events),
+                miniMonth: new Date().getMonth(),
+                miniYear: new Date().getFullYear(),
                 dayNamesShort: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
                 monthNames: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
                 filters: {
@@ -494,6 +507,15 @@
                     }
                 },
 
+                getEventsForDate(date) {
+                    if (!date) return [];
+                    const dateStr = date.toISOString().split('T')[0];
+                    return this.allEvents.filter(event => {
+                        const eventDate = new Date(event.start_date).toISOString().split('T')[0];
+                        return eventDate === dateStr;
+                    });
+                },
+
                 selectDate(dayObj) {
                     this.currentDate = new Date(dayObj.fullDate);
                     this.miniMonth = dayObj.fullDate.getMonth();
@@ -537,6 +559,9 @@
             }
         }
     </script>
+<!-- impeccable-live-start -->
+<script src="http://localhost:8400/live.js"></script>
+<!-- impeccable-live-end -->
 </body>
 </html>
 

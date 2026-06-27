@@ -2,71 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Calendar;
+use App\Models\Family;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * View kalender untuk Organisasi / Ekskul (Mode Edit & Manage)
+     */
+    public function calendarOrganisasi(Family $family)
+    {
+        // Cek jika user tergabung di unit ini
+        $member = auth()->user()->familyMembers()->where('family_id', $family->id)->first();
+        if (!$member) {
+            return redirect('/dashboard')->with('error', 'Anda tidak tergabung di unit ini.');
+        }
+
+        // Ambil semua event yang disetujui (published)
+        $events = Event::where('family_id', $family->id)
+            ->where('status', 'published')
+            ->with('category')
+            ->get();
+
+        // Ambil kategori untuk filter & modal
+        $family->load('categories');
+
+        return view('C-Folder.calendarOrganisasi', compact('family', 'events'));
+    }
+
+    /**
+     * View kalender untuk Publik / Siswa (Mode Viewer)
+     */
+    public function calendarUser($familyId = null)
+    {
+        $families = Family::all();
+        $activeFamily = null;
+        $events = collect();
+
+        if ($familyId) {
+            $activeFamily = Family::with('categories')->find($familyId);
+            if ($activeFamily) {
+                $events = Event::where('family_id', $activeFamily->id)
+                    ->where('status', 'published')
+                    ->with('category')
+                    ->get();
+            }
+        }
+
+        return view('C-Folder.calendarUser', compact('families', 'activeFamily', 'events'));
+    }
+
+    /**
+     * Halaman Admin Utama (Opsional)
      */
     public function index()
     {
         return view('C-Folder.calendar');
-    }
-    public function calendarUser()
-    {
-        return view('C-Folder.calendarUser');
-    }
-    public function calendarOrganisasi()
-    {
-        return view('C-Folder.calendarOrganisasi'); 
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Calendar $calendar)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Calendar $calendar)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Calendar $calendar)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Calendar $calendar)
-    {
-        //
     }
 }

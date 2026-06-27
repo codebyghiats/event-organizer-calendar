@@ -156,14 +156,19 @@
 
     <!-- Main Content -->
     <main class="flex-1 flex flex-col h-full overflow-hidden bg-white">
-        <!-- Header -->
         <header class="h-20 border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
             <div class="flex items-center space-x-4">
-                <h1 class="text-2xl font-medium text-gray-900">Kalender Event Sekolah</h1>
+                <a href="{{ route('dashboard') }}" class="p-2.5 hover:bg-gray-100 rounded-xl text-gray-500 transition-colors" title="Kembali ke Dashboard">
+                    <i class="ri-dashboard-line text-xl"></i>
+                </a>
+                <div class="h-6 w-px bg-gray-200 mx-1"></div>
+                <h1 class="text-2xl font-bold text-gray-900">Kalender {{ $family->name }}</h1>
             </div>
-            <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors shadow-sm flex items-center gap-2">
-                <i class="ri-add-line"></i> Ajukan Event
-            </button>
+            <div class="flex items-center gap-3">
+                <button @click="showAddEventModal = true" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-blue-100 flex items-center gap-2 active:scale-95">
+                    <i class="ri-add-line"></i> Ajukan Event
+                </button>
+            </div>
         </header>
 
         <!-- Calendar Controls -->
@@ -217,6 +222,18 @@
                                 }"
                                 x-text="day.date"></span>
                         </div>
+                        
+                        <!-- List Event di Sel ini -->
+                        <div class="space-y-1">
+                            <template x-for="event in getEventsForDate(day.fullDate)" :key="event.id">
+                                <div 
+                                    :style="`background-color: ${event.color || '#3b82f6'}`"
+                                    class="px-2 py-1 rounded-md text-[10px] text-white font-bold truncate shadow-sm transition-transform hover:scale-105"
+                                    :title="event.title"
+                                    x-text="event.title">
+                                </div>
+                            </template>
+                        </div>
                     </div>
                 </template>
             </div>
@@ -262,16 +279,121 @@
         <!-- AGENDA VIEW -->
         <div x-show="currentView === 'agenda'" class="flex-1 overflow-y-auto px-8 pb-8" x-cloak>
             <div class="max-w-3xl mx-auto">
-                <div class="text-center py-16">
-                    <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="ri-calendar-check-line text-4xl text-gray-400"></i>
+                <div class="text-center py-20">
+                    <div class="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-calendar-check-line text-4xl text-gray-300"></i>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Belum Ada Event</h3>
-                    <p class="text-gray-500 mb-6">Tidak ada event yang dijadwalkan untuk periode ini</p>
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition-colors shadow-sm flex items-center gap-2 mx-auto">
-                        <i class="ri-add-line"></i> Ajukan Event
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Belum Ada Agenda Terdekat</h3>
+                    <p class="text-gray-500 mb-8">Semua pengajuan yang disetujui akan tampil di sini secara otomatis.</p>
+                    <button @click="showAddEventModal = true" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-2xl font-bold transition-all shadow-xl shadow-blue-100 flex items-center gap-2 mx-auto active:scale-95">
+                        <i class="ri-add-line"></i> Buat Pengajuan Sekarang
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- MODAL ADD EVENT -->
+        <div x-show="showAddEventModal" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm" x-cloak>
+            
+            <div @click.away="showAddEventModal = false" 
+                 class="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-2xl p-10 transform relative mx-4 max-h-[90vh] overflow-y-auto">
+                
+                <button @click="showAddEventModal = false" class="absolute top-8 right-8 text-gray-400 hover:text-gray-900 transition-colors p-2 bg-gray-50 rounded-xl">
+                    <i class="ri-close-line text-2xl"></i>
+                </button>
+
+                <div class="mb-10">
+                    <h2 class="text-3xl font-black text-gray-900 mb-2">Ajukan Kegiatan Baru</h2>
+                    <p class="text-gray-500">Isi formulir di bawah ini dan lampirkan proposal (PDF) untuk direview Pembina.</p>
+                </div>
+
+                @if ($errors->any())
+                    <div class="bg-red-50 border border-red-100 text-red-600 p-4 rounded-2xl mb-6 text-sm">
+                        <ul class="list-disc pl-5">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    @csrf
+                    <input type="hidden" name="family_id" value="{{ $family->id }}">
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Judul Kegiatan</label>
+                            <input type="text" name="title" required placeholder="Contoh: Lomba Basket Antar Kelas"
+                                class="w-full px-5 py-3.5 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all placeholder-gray-400 text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Kategori</label>
+                            <select name="category_id" class="w-full px-5 py-3.5 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all text-sm appearance-none">
+                                <option value="">Pilih Kategori</option>
+                                @foreach($family->categories ?? [] as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Warna Label</label>
+                            <div class="flex items-center gap-2">
+                                <input type="color" name="color" value="#3b82f6" class="w-12 h-12 rounded-xl border-none cursor-pointer bg-transparent">
+                                <span class="text-xs text-gray-500">Klik untuk pilih warna</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Waktu Mulai</label>
+                            <input type="datetime-local" name="start_date" required
+                                class="w-full px-5 py-3.5 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Lokasi</label>
+                            <input type="text" name="location" placeholder="Aula, Lapangan, dll"
+                                class="w-full px-5 py-3.5 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all placeholder-gray-400 text-sm">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Upload Proposal (Wajib PDF)</label>
+                            <div class="relative group">
+                                <input type="file" name="proposal_file" required accept="application/pdf"
+                                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                                <div class="w-full px-6 py-8 bg-blue-50/50 border-2 border-dashed border-blue-200 rounded-2xl flex flex-col items-center justify-center gap-2 group-hover:bg-blue-50 transition-colors">
+                                    <i class="ri-file-upload-line text-3xl text-blue-500"></i>
+                                    <span class="text-sm font-bold text-blue-700">Pilih File Proposal</span>
+                                    <span class="text-[10px] text-blue-400">Hanya format .pdf (Maks. 10MB)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2 ml-1">Deskripsi Singkat</label>
+                            <textarea name="description" rows="3" placeholder="Jelaskan secara singkat agenda kegiatan..."
+                                class="w-full px-5 py-3.5 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all placeholder-gray-400 text-sm"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 pt-6">
+                        <button type="button" @click="showAddEventModal = false" class="flex-1 px-8 py-4 bg-gray-50 text-gray-500 font-bold rounded-2xl hover:bg-gray-100 transition-all">
+                            Batal
+                        </button>
+                        <button type="submit" class="flex-[2] px-8 py-4 bg-blue-600 text-white font-black rounded-2xl shadow-xl shadow-blue-100 hover:bg-blue-700 transition-all active:scale-95">
+                            Kirim Pengajuan
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
@@ -280,7 +402,9 @@
         function calendarApp() {
             return {
                 currentView: 'minggu',
-                currentDate: new Date(2026, 8, 9),
+                showAddEventModal: false,
+                currentDate: new Date(),
+                allEvents: @json($events),
                 miniMonth: 8,
                 miniYear: 2025,
                 dayNamesShort: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
@@ -449,6 +573,15 @@
                     }
                 },
 
+                getEventsForDate(date) {
+                    if (!date) return [];
+                    const dateStr = date.toISOString().split('T')[0];
+                    return this.allEvents.filter(event => {
+                        const eventDate = new Date(event.start_date).toISOString().split('T')[0];
+                        return eventDate === dateStr;
+                    });
+                },
+
                 selectDate(dayObj) {
                     this.currentDate = new Date(dayObj.fullDate);
                     this.miniMonth = dayObj.fullDate.getMonth();
@@ -492,5 +625,8 @@
             }
         }
     </script>
+<!-- impeccable-live-start -->
+<script src="http://localhost:8400/live.js"></script>
+<!-- impeccable-live-end -->
 </body>
 </html>

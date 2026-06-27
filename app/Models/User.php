@@ -2,18 +2,20 @@
 
 namespace App\Models;
 
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
+    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass fillable.
+     *
+     * @var list<string>
      */
     protected $fillable = [
         'name',
@@ -23,6 +25,8 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
      */
     protected $hidden = [
         'password',
@@ -30,7 +34,9 @@ class User extends Authenticatable
     ];
 
     /**
-     * Attribute casting.
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
      */
     protected function casts(): array
     {
@@ -40,42 +46,20 @@ class User extends Authenticatable
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | RELATIONSHIPS
-    |--------------------------------------------------------------------------
-    */
+    public function families()
+    {
+        return $this->belongsToMany(Family::class, 'family_members')
+                    ->withPivot('role')
+                    ->withTimestamps();
+    }
 
-    /**
-     * User has many FamilyMember records
-     */
-    public function familyMembers(): HasMany
+    public function familyMembers()
     {
         return $this->hasMany(FamilyMember::class);
     }
 
-    /**
-     * User belongs to many Families (via family_members table)
-     */
-    public function families(): BelongsToMany
+    public function isAdminOf($familyId)
     {
-        return $this->belongsToMany(Family::class, 'family_members')
-            ->withPivot([
-                'role',
-                'status',
-                'joined_at',
-                'approved_at',
-                'approved_by',
-                'notes',
-            ])
-            ->withTimestamps();
-    }
-
-    /**
-     * Families created by this user
-     */
-    public function createdFamilies(): HasMany
-    {
-        return $this->hasMany(Family::class, 'created_by');
+        return $this->families()->where('family_id', $familyId)->wherePivot('role', 'admin')->exists();
     }
 }

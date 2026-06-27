@@ -1,7 +1,6 @@
 @import 'tailwindcss';
 @import "@fontsource-variable/inter";
 
-
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
@@ -9,38 +8,49 @@
 
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  
-  /* Custom Colors */
-  --color-primary: #3461DF;
-  --color-primary-dark: #274BC8;
-  --color-primary-medium: #79ACFF;
-  --color-primary-light: #B8D9FF;
-  --color-background: #F4F8FF;
-  --color-text-primary: #0F172A;
-  --color-text-secondary: #64748B;
-  --color-border: #E2E8F0;
+
+  /* Design System Colors — School Planner "The Academic Beacon" */
+  --color-primary:          #3461DF;
+  --color-primary-dark:     #274BC8;
+  --color-primary-medium:   #79ACFF;
+  --color-primary-light:    #B8D9FF;
+  --color-neutral-bg:       #F4F8FF;
+  --color-text-primary:     #0F172A;
+  --color-text-secondary:   #64748B;
+  --color-border:           #E2E8F0;
 }
 
-/* Global Styles */
+/* =============================================
+   GLOBAL
+   ============================================= */
 body {
-  @apply font-sans text-text-primary antialiased;
+  @apply font-sans antialiased;
+  color: #0F172A;
+  background-color: #F4F8FF;
 }
 
-/* Gradient untuk Login/Register */
-.gradient-login {
-  background: linear-gradient(135deg, #B8D9FF 0%, #79ACFF 50%, #3461DF 100%);
+h1, h2, h3 {
+  text-wrap: balance; /* The Balance Rule */
 }
 
-/* Soft shadow untuk card */
+/* =============================================
+   DESIGN SYSTEM — ELEVATION
+   Floating Nav Shadow: 0 25px 50px -12px rgba(15,23,42,0.05)
+   Interactive Soft Shadow: 0 4px 6px -1px rgba(15,23,42,0.05)
+   ============================================= */
+.shadow-nav {
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.05);
+}
+
 .shadow-soft {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05);
 }
 
-/* Focus state untuk input */
-.input-focus {
-  @apply border-primary-medium focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition;
-}
-
+/* =============================================
+   DESIGN SYSTEM — ANIMATIONS
+   Only fadeUp and float are permitted (design.json motion tokens).
+   No shimmer, no animated gradient backgrounds.
+   ============================================= */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -54,7 +64,7 @@ body {
 
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+  50%       { transform: translateY(-12px); }
 }
 
 .animate-fadeUp {
@@ -66,55 +76,144 @@ body {
 .animate-delay-3 { animation-delay: 0.6s; opacity: 0; }
 .animate-delay-4 { animation-delay: 0.8s; opacity: 0; }
 
-.float-animation {
-  animation: float 6s ease-in-out infinite;
+/* =============================================
+   DESIGN SYSTEM — COMPONENTS
+   ============================================= */
+
+/* Primary Button — bg #3461DF, rounded 16px, padding 10px 24px */
+.ds-btn-primary {
+  background-color: #3461DF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 16px;
+  padding: 10px 24px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.ds-btn-primary:hover  { background-color: #274BC8; }
+.ds-btn-primary:active { transform: scale(0.95); }
+
+/* Secondary Button — bg #0F172A, rounded 16px */
+.ds-btn-secondary {
+  background-color: #0F172A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 16px;
+  padding: 10px 24px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.ds-btn-secondary:hover  { background-color: #1E293B; }
+.ds-btn-secondary:active { transform: scale(0.95); }
+
+/* Input Field — bg #F9FAFB, border #E2E8F0, rounded 16px */
+.ds-input {
+  background-color: #F9FAFB;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 14px 20px;
+  font-size: 0.875rem;
+  color: #0F172A;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.ds-input::placeholder { color: #9CA3AF; }
+.ds-input:focus {
+  border-color: #79ACFF;
+  box-shadow: 0 0 0 4px rgba(52, 97, 223, 0.1);
 }
 
-/* ================= ANIMATED GRADIENT BG ================= */
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Card Container — bg white, border #F3F4F6, rounded 24px, p-8 */
+.ds-card {
+  background-color: #FFFFFF;
+  border: 1px solid #F3F4F6;
+  border-radius: 24px;
+  padding: 32px;
+  transition: box-shadow 0.5s ease, transform 0.5s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+.ds-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  transform: translateY(-8px);
 }
 
-.animated-bg {
-  background: linear-gradient(-45deg, #dbeafe, #ffffff, #e0f2fe, #eef2ff);
-  background-size: 400% 400%;
-  animation: gradientMove 15s ease infinite;
+/* Navbar — floating, translucent white, blur, rounded 32px */
+.ds-navbar {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 32px;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.05);
 }
 
-/* ================= SHIMMER TEXT ================= */
-.shimmer-text {
-  background: linear-gradient(
-    90deg,
-    #2563eb 0%,
-    #60a5fa 25%,
-    #ffffff 50%,
-    #60a5fa 75%,
-    #2563eb 100%
-  );
-  background-size: 200% auto;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: shimmer 4s linear infinite;
+/* =============================================
+   PAGE UTILITIES
+   ============================================= */
+
+/* Clean off-white page background */
+.page-bg {
+  background-color: #F4F8FF;
 }
 
-@keyframes shimmer {
-  to { background-position: 200% center; }
+/* Bordered section divider — Border-First Rule */
+.section-border {
+  border-top: 1px solid #E2E8F0;
 }
 
-/* ================= FLOAT IMAGE ================= */
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+/* NAVBAR SCROLL STATE — subtle only, no heavy shadow */
+.nav-scrolled {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
 }
 
-.float-animation {
-  animation: float 6s ease-in-out infinite;
+/* =============================================
+   ABOUT PAGE CARDS
+   ============================================= */
+.about-card {
+  @apply bg-white rounded-3xl p-8 border border-gray-100
+  hover:shadow-xl hover:-translate-y-2 transition-all duration-500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-/* ================= SCROLL INDICATOR ================= */
+.team-card {
+  @apply bg-white rounded-3xl p-6 border border-gray-100
+  hover:shadow-xl hover:-translate-y-2 transition-all duration-500 text-center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.tech-card {
+  @apply bg-white rounded-2xl p-6 flex items-center justify-center
+  border border-gray-100 hover:shadow-lg transition-all duration-300;
+}
+
+/* =============================================
+   DASHBOARD CARDS
+   ============================================= */
+.dashboard-card {
+  @apply bg-white p-8 rounded-3xl border border-gray-100
+  hover:shadow-xl transition-all duration-300 block hover:-translate-y-1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* =============================================
+   LOGIN GRADIENT (login/register page only)
+   Only used on full-screen auth backgrounds
+   ============================================= */
+.gradient-login {
+  background: linear-gradient(135deg, #B8D9FF 0%, #79ACFF 50%, #3461DF 100%);
+}
+
+/* =============================================
+   SCROLL INDICATOR (hero)
+   ============================================= */
 .scroll-indicator {
   position: absolute;
   bottom: 30px;
@@ -125,59 +224,19 @@ body {
 .scroll-dot {
   width: 6px;
   height: 6px;
-  background: #2563eb;
+  background: #3461DF;
   border-radius: 50%;
   animation: scrollBounce 1.5s infinite;
 }
 
 @keyframes scrollBounce {
-  0%,100% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(8px); opacity: .5; }
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50%       { transform: translateY(8px); opacity: 0.5; }
 }
 
-/* ================= NAVBAR SCROLL EFFECT ================= */
-.nav-scrolled {
-  background: rgba(255,255,255,0.9);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-}
-
-/* =============== Smooth reveal effect ================== */
+/* =============================================
+   AOS SMOOTH REVEAL
+   ============================================= */
 [data-aos] {
   transition-property: transform, opacity !important;
-}
-
-/* Card subtle scale effect saat muncul */
-.aos-animate {
-  transform: translateY(0) scale(1);
-}
-
-/* ================= ABOUT PAGE ================= */
-
-.about-hero-bg {
-    background: linear-gradient(180deg, #eff6ff 0%, #ffffff 50%, #eff6ff 100%);
-}
-
-.about-card {
-    @apply bg-white rounded-3xl p-8 shadow-sm border border-gray-100 
-    hover:shadow-xl hover:-translate-y-2 transition-all duration-500;
-}
-
-.team-card {
-    @apply bg-white rounded-3xl p-6 shadow-sm border border-gray-100
-    hover:shadow-xl hover:-translate-y-2 transition-all duration-500
-    text-center;
-}
-
-.tech-card {
-    @apply bg-white rounded-2xl p-6 flex items-center justify-center
-    shadow-sm border border-gray-100 hover:shadow-lg transition;
-}
-
-.dashboard-card{
-@apply bg-white p-8 rounded-3xl shadow hover:shadow-xl transition duration-300 block hover:-translate-y-1;
-}
-
-.stats-card{
-@apply bg-gray-50 p-10 rounded-3xl text-center shadow-sm;
 }
